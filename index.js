@@ -1,3 +1,4 @@
+const express = require("express");
 const { MongoClient } = require("mongodb");
 
 async function getQueries() {
@@ -129,3 +130,16 @@ async function main() {
     console.log("Update result:", updateResult);
 }
 main();
+
+router.get("/", async function(req, res) {
+    const values = { 
+        farms,
+        aggregationResult,
+        countPrecisionAgResult,
+        averagesResult,
+        updateResult
+      }
+
+      res.render("index", values);
+    });
+    module.exports = router;

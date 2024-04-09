@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Welcome to Irrigation Solutions!</title>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+    <style>
+        @import url("https://p.typekit.net/p.css?s=1&k=vnd5zic&ht=tk&f=39475.39476.39477.39478.39479.39480.39481.39482&a=18673890&app=typekit&e=css");
+        @font-face {
+            font-family: "neo-sans";
+            src: url("https://use.typekit.net/af/00ac0a/00000000000000003b9b2033/27/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n7&v=3") format("woff2"), url("https://use.typekit.net/af/00ac0a/00000000000000003b9b2033/27/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n7&v=3") format("woff"), url("https://use.typekit.net/af/00ac0a/00000000000000003b9b2033/27/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n7&v=3") format("opentype");
+            font-style: normal;
+            font-weight: 700;
+        }
+
+        html {
+            font-family: neo-sans;
+            font-weight: 700;
+            font-size: calc(62rem / 16);
+        }
+
+        body {
+            background: white;
+        }
+
+        section {
+            border-radius: 1em;
+            padding: 1em;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin-right: -50%;
+            transform: translate(-50%, -50%);
+        }
+    </style>
+</head>
+<body>
+<section id="results">
+    <!-- Results will be displayed here -->
+</section>
+
+<script>
+    // Replace the placeholder content with the actual results
+    async function fetchData() {
+        const response = await fetch('/data');
+        const data = await response.json();
+
+        // Create a string to hold the HTML content
+        let htmlContent = '<h2>Farm Queries:</h2>';
+        htmlContent += `<p>${data.farmQueries.length}</p>`;
+
+        htmlContent += '<h2>Top Yielding Crops:</h2>';
+        data.topYieldingCrops.forEach(crop => {
+            htmlContent += `<p>${crop}</p>`;
+        });
+
+        htmlContent += '<h2>Count of Farms with Precision Agriculture Analysts:</h2>';
+        htmlContent += `<p>${data.precisionAgCount}</p>`;
+
+        htmlContent += '<h2>Averages for Each Disease:</h2>';
+        data.diseaseAverages.forEach(average => {
+            htmlContent += `<p>Disease: ${average.disease}</p>`;
+            htmlContent += `<p>Average Location: ${average.avgLocation}</p>`;
+            htmlContent += `<p>Average Humidity: ${average.avgHumidity}</p>`;
+            htmlContent += `<p>Average Water Saturation: ${average.avgWaterSaturation}</p>`;
+        });
+
+        htmlContent += '<h2>Update Result:</h2>';
+        htmlContent += `<p>${data.updateResult}</p>`;
+
+        // Update the HTML content
+        document.getElementById('results').innerHTML = htmlContent;
+    }
+
+    // Call the fetchData function when the page loads
+    fetchData();
+</script>
+</body>
+</html>

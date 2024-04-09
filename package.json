@@ -1,19 +1,21 @@
 {
-  "name": "express-hello-world",
+  "name": "cs3200_p2_queries",
   "version": "1.0.0",
-  "description": "Express Hello World on Render",
-  "main": "app.js",
-  "repository": "https://github.com/render-examples/express-hello-world",
-  "author": "Render Developers",
-  "license": "MIT",
-  "private": false,
+  "description": "Queries for Irrigation Solution for farms.",
+  "main": "index.js",
   "scripts": {
-    "start": "node app.js"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
   "dependencies": {
-    "express": "^4.18.2"
+    "express": "^4.19.2",
+    "mongodb": "^6.5.0"
   },
-  "engines": {
-    "node": ">=14"
+  "devDependencies": {
+    "eslint": "^9.0.0",
+    "eslint-config-prettier": "^9.1.0",
+    "prettier": "^3.2.5"
   }
 }
